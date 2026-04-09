@@ -73,6 +73,12 @@ export function Home() {
               onRemove={() => console.log("Item Removido")}
             />
           )}
+          showsVerticalScrollIndicator={false}
+          ItemSeparatorComponent={() => <View style={styles.separator} />}
+          contentContainerStyle={styles.listContent}
+          ListEmptyComponent={() => (
+            <Text style={styles.emptyContent}>Nenhum item aqui.</Text>
+          )}
         />
       </View>
     </View>
