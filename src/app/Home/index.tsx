@@ -1,11 +1,5 @@
-import {
-  View,
-  Image,
-  TouchableOpacity,
-  Text,
-  ScrollView,
-  FlatList,
-} from "react-native";
+import { useState } from "react";
+import { View, Image, TouchableOpacity, Text, FlatList } from "react-native";
 
 import { styles } from "./styles";
 
@@ -34,20 +28,28 @@ const ITEMS = [
 ];
 
 export function Home() {
-  console.log("ITEMS: ", ITEMS);
+  const [filter, setFilter] = useState(FilterStatus.PENDING);
+
   return (
     <View style={styles.container}>
       <Image source={require("@/assets/logo.png")} style={styles.logo} />
 
       <View style={styles.form}>
-        <Input placeholder="O que você precisa comprar?" />
-        <Button title="Entrar" />
+        <Input placeholder="O que você precisa comprar hoje?" />
+        <Button title="Adicionar" />
       </View>
 
       <View style={styles.content}>
         <View style={styles.header}>
           {FILTER_STATUS.map((status) => (
-            <Filter key={status} status={status} isActive />
+            <Filter
+              key={status}
+              status={status}
+              isActive={status === filter}
+              onPress={() => {
+                setFilter(status);
+              }}
+            />
           ))}
           <TouchableOpacity style={styles.clearButton}>
             <Text style={styles.clearText}>Limpar</Text>
