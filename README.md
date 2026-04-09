@@ -6,7 +6,7 @@ BaeShop é um aplicativo de lista de compras desenvolvido em React Native, inspi
 
 ## ScreenShots
 
-![Descrição da imagem](screenshots/homeview.png){width=300px}
+![Descrição da imagem](screenshots/homeview.png){width=100px}
 
 ## Tecnologias Utilizadas
 
