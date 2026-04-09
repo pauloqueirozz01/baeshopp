@@ -4,6 +4,10 @@
 
 BaeShop é um aplicativo de lista de compras desenvolvido em React Native, inspirado no curso da formação React Native da Rocketseat. O app permite ao usuário criar e gerenciar uma lista de itens a serem comprados, com visualização de status (pendente ou comprado). Futuras versões incluirão autenticação de usuário e persistência offline.
 
+## ScreenShots
+
+![Descrição da imagem](screenshots/homeview.png)
+
 ## Tecnologias Utilizadas
 
 - React Native
