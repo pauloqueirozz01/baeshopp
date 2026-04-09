@@ -16,7 +16,22 @@ import { FilterStatus } from "@/types/FilterStatus";
 import Item from "@/components/Item";
 
 const FILTER_STATUS: FilterStatus[] = [FilterStatus.DONE, FilterStatus.PENDING];
-const ITEMS = Array.from({ length: 100 }).map((_, index) => String(index));
+const ITEMS = [
+  { id: "1", status: FilterStatus.DONE, description: "1 pacote de café" },
+  { id: "2", status: FilterStatus.PENDING, description: "2 caixas de leite" },
+  {
+    id: "3",
+    status: FilterStatus.DONE,
+    description: "1 Pacote de Pão integral",
+  },
+  { id: "4", status: FilterStatus.PENDING, description: "Ovos" },
+  { id: "5", status: FilterStatus.DONE, description: "Queijo" },
+  { id: "6", status: FilterStatus.PENDING, description: "Tomate" },
+  { id: "7", status: FilterStatus.PENDING, description: "Alface" },
+  { id: "8", status: FilterStatus.DONE, description: "Frango" },
+  { id: "9", status: FilterStatus.PENDING, description: "Arroz" },
+  { id: "10", status: FilterStatus.PENDING, description: "Feijão" },
+];
 
 export function Home() {
   console.log("ITEMS: ", ITEMS);
@@ -50,10 +65,10 @@ export function Home() {
         </ScrollView> */}
         <FlatList
           data={ITEMS}
-          keyExtractor={(item) => item}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => (
             <Item
-              data={{ status: FilterStatus.DONE, description: item }}
+              data={item}
               onStatus={() => console.log("Status alterado")}
               onRemove={() => console.log("Item Removido")}
             />
