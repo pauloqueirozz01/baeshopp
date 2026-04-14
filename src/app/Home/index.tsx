@@ -20,19 +20,19 @@ const FILTER_STATUS: FilterStatus[] = [FilterStatus.DONE, FilterStatus.PENDING];
 
 export function Home() {
   const [filter, setFilter] = useState(FilterStatus.PENDING);
-  const [items, setItems] = useState([]);
-  const [description, setDescription] = useState<any>("");
+  const [items, setItems] = useState<any>([]);
+  const [description, setDescription] = useState("");
 
   function handleAddItem() {
     if (!description.trim()) {
-      return Alert.alert("Adicionar", "informe a descrição para adicionar.");
+      return Alert.alert("Adicionar", "Informe o que você quer adicionar.");
     }
     const newItem = {
       id: Math.random().toString(36).substring(2),
       description,
       status: FilterStatus.PENDING,
     };
-    console.log(newItem);
+    setItems((prevState) => [...prevState, newItem]);
   }
 
   return (
