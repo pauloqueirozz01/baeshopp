@@ -16,7 +16,7 @@ type Props = {
   onStatus: () => void;
 };
 
-export default function ({ data, onRemove, onStatus }: Props) {
+export default function Item({ data, onRemove, onStatus }: Props) {
   return (
     <View style={styles.container}>
       <TouchableOpacity activeOpacity={0.8} onPress={onStatus}>

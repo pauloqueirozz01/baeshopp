@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   View,
   Image,
@@ -8,19 +8,20 @@ import {
   Alert,
 } from "react-native";
 
-import { styles } from "./styles";
-
 import { Button } from "@/components/Button";
 import { Input } from "@/components/Input";
 import { Filter } from "@/components/Filter";
-import { FilterStatus } from "@/types/FilterStatus";
 import Item from "@/components/Item";
+
+import { styles } from "./styles";
+import { FilterStatus } from "@/types/FilterStatus";
+import { itemsStorage, ItemStorage } from "@/storage/itemsStorage";
 
 const FILTER_STATUS: FilterStatus[] = [FilterStatus.DONE, FilterStatus.PENDING];
 
 export function Home() {
   const [filter, setFilter] = useState(FilterStatus.PENDING);
-  const [items, setItems] = useState<any>([]);
+  const [items, setItems] = useState<ItemStorage[]>([]);
   const [description, setDescription] = useState("");
 
   function handleAddItem() {
@@ -35,6 +36,19 @@ export function Home() {
     setItems((prevState) => [...prevState, newItem]);
   }
 
+  async function getItems() {
+    try {
+      const response = await itemsStorage.get();
+      setItems(response);
+    } catch (error) {
+      console.log(error);
+      alert("Não foi possível filtrar os items");
+    }
+  }
+
+  useEffect(() => {
+    itemsStorage.get().then((response) => console.log(response));
+  });
   return (
     <View style={styles.container}>
       <Image source={require("@/assets/logo.png")} style={styles.logo} />
