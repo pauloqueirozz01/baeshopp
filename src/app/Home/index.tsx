@@ -48,7 +48,17 @@ export function Home() {
       setItems(response);
     } catch (error) {
       console.log(error);
-      alert("Não foi possível filtrar os items");
+      alert("Não foi possível filtrar os items.");
+    }
+  }
+
+  async function handleRemove(id: string) {
+    try {
+      await itemsStorage.remove(id);
+      await itemsByStatus();
+    } catch (error) {
+      console.log(error);
+      Alert.alert("Remover", "Não foi possível remover o item selecionado.");
     }
   }
 
@@ -102,7 +112,7 @@ export function Home() {
             <Item
               data={item}
               onStatus={() => console.log("Status alterado")}
-              onRemove={() => console.log("Item Removido")}
+              onRemove={() => handleRemove(item.id)}
             />
           )}
           showsVerticalScrollIndicator={false}
