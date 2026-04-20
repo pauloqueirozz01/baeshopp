@@ -17,7 +17,7 @@ import { styles } from "./styles";
 import { FilterStatus } from "@/types/FilterStatus";
 import { itemsStorage, ItemStorage } from "@/storage/itemsStorage";
 
-const FILTER_STATUS: FilterStatus[] = [FilterStatus.DONE, FilterStatus.PENDING];
+const FILTER_STATUS: FilterStatus[] = [FilterStatus.PENDING, FilterStatus.DONE];
 
 export function Home() {
   const [filter, setFilter] = useState(FilterStatus.PENDING);
@@ -35,7 +35,11 @@ export function Home() {
     };
 
     await itemsStorage.add(newItem);
-    await itemsByStatus();
+    //await itemsByStatus();
+
+    setFilter(FilterStatus.PENDING);
+    Alert.alert("Adicionado", `adicionado ${description}`);
+    setDescription("");
   }
 
   async function itemsByStatus() {
@@ -59,6 +63,7 @@ export function Home() {
         <Input
           placeholder="O que você precisa comprar hoje?"
           onChangeText={setDescription}
+          value={description}
         />
 
         <Button title="Adicionar" onPress={handleAddItem} />
