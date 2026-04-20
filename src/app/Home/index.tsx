@@ -24,7 +24,7 @@ export function Home() {
   const [items, setItems] = useState<ItemStorage[]>([]);
   const [description, setDescription] = useState("");
 
-  function handleAddItem() {
+  async function handleAddItem() {
     if (!description.trim()) {
       return Alert.alert("Adicionar", "Informe o que você quer adicionar.");
     }
@@ -33,12 +33,14 @@ export function Home() {
       description,
       status: FilterStatus.PENDING,
     };
-    setItems((prevState) => [...prevState, newItem]);
+
+    await itemsStorage.add(newItem);
+    await itemsByStatus();
   }
 
-  async function getItems() {
+  async function itemsByStatus() {
     try {
-      const response = await itemsStorage.get();
+      const response = await itemsStorage.getByStatus(filter);
       setItems(response);
     } catch (error) {
       console.log(error);
@@ -47,8 +49,8 @@ export function Home() {
   }
 
   useEffect(() => {
-    itemsStorage.get().then((response) => console.log(response));
-  });
+    itemsByStatus();
+  }, [filter]);
   return (
     <View style={styles.container}>
       <Image source={require("@/assets/logo.png")} style={styles.logo} />
