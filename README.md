@@ -40,38 +40,41 @@ O usuário pode adicionar, visualizar, remover itens e acompanhar o status de ca
    ```bash
    git clone https://github.com/pauloqueirozz01/baeshopp.git
 
-Navegue até a pasta do projeto:
-
+2. Navegue até a pasta do projeto:
+```bash
 cd baeshopp
-
-Instale as dependências:
-
+```
+3. Instale as dependências:
+```bash
 npm install
-
-Rode o app:
-
+```
+4. Rode o app:
+```bash
 npx expo start
-Como Usar
+```
+6. Como Usar
+
 Ao abrir o app, você verá uma lista vazia.
 Adicione itens como "3 pacotes de arroz" ou "2 quilos de carne".
 Os itens começam como pendentes.
 Você pode marcar itens como comprados.
 É possível remover itens individualmente ou limpar toda a lista.
 Utilize os filtros para visualizar apenas itens pendentes ou comprados.
-Escolhas Técnicas
-FlatList
+
+***Escolhas Técnicas***
+## FlatList
 
 O FlatList foi utilizado para garantir melhor desempenho na renderização da lista. Ele renderiza apenas os itens visíveis na tela, reduzindo o consumo de memória e melhorando a performance em dispositivos móveis.
 
-SQLite (Expo SQLite)
+## SQLite (Expo SQLite)
 
 Foi utilizado SQLite para persistência local dos dados. Isso garante que a lista de compras permaneça salva mesmo após o fechamento do aplicativo.
 
-Componentização
+## Componentização
 
 A interface foi dividida em componentes reutilizáveis, facilitando a manutenção e organização do código.
 
-Implementações Futuras
+***Implementações Futuras***
 Edição de itens existentes
 Separação entre quantidade e descrição
 Sistema de categorias (carnes, grãos, bebidas, etc.)
